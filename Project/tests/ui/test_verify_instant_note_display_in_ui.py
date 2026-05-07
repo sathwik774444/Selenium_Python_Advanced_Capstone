@@ -50,10 +50,10 @@ def test_verify_instant_note_display_in_ui(browser):
         time.sleep(3)
         
         # Scroll down to ensure note is visible (handle advertisements)
-        with allure.step("Scroll down to make note visible"):
-            # Scroll down to bypass advertisements and see the notes
-            browser.execute_script("window.scrollTo(0, 500);")
-            time.sleep(1)
+        # with allure.step("Scroll down to make note visible"):
+        #     # Scroll down to bypass advertisements and see the notes
+        #     browser.execute_script("window.scrollTo(0, 500);")
+        #     time.sleep(1)
             
             # # Scroll further down if needed
             # browser.execute_script("window.scrollTo(0, 800);")
