@@ -19,9 +19,9 @@ pipeline {
         stage('Create Report Directories') {
             steps {
                 bat '''
-                if not exist Reports mkdir Reports
-                if not exist Screenshots mkdir Screenshots
-                if not exist Logs mkdir Logs
+                if not exist reports mkdir reports
+                if not exist screenshots mkdir screenshots
+                if not exist logs mkdir logs
                 if not exist allure-results mkdir allure-results
                 '''
             }
@@ -37,16 +37,16 @@ pipeline {
                             echo "Cleaning up previous Allure results..."
                             rmdir /s /q allure-results
                             mkdir allure-results
-                            echo "✅ Allure results cleaned successfully"
+                            echo " Allure results cleaned successfully"
                         ) else (
                             echo "No previous Allure results to clean"
                         )
                         '''
                         
-                        echo "✅ Allure cleanup completed"
+                        echo " Allure cleanup completed"
                         
                     } catch (Exception e) {
-                        echo "⚠️ Failed to clean Allure results: ${e}"
+                        echo " Failed to clean Allure results: ${e}"
                         // Don't fail the build for cleanup issues
                     }
                 }
@@ -77,11 +77,11 @@ pipeline {
                         // Verify Grid
                         bat 'curl -f http://localhost:4444/status'
 
-                        echo "✅ Selenium Grid started successfully"
+                        echo " Selenium Grid started successfully"
 
                     } catch (Exception e) {
 
-                        echo "❌ Failed to start Selenium Grid: ${e}"
+                        echo " Failed to start Selenium Grid: ${e}"
 
                         bat '''
                         docker ps -a
@@ -105,10 +105,10 @@ pipeline {
                             pytest -v -n 4 --dist=loadscope --html=Reports/report.html --self-contained-html --alluredir=allure-results
                             '''
                             
-                            echo "✅ Parallel tests completed on Selenium Grid"
+                            echo " Parallel tests completed on Selenium Grid"
                             
                         } catch (Exception e) {
-                            echo "❌ Parallel test execution failed: ${e}"
+                            echo " Parallel test execution failed: ${e}"
                             currentBuild.result = 'UNSTABLE'
                         }
                     }
@@ -133,10 +133,10 @@ pipeline {
                         powershell -Command "(Get-Content config\\config.yaml) -replace 'mode: \\"remote\\"', 'mode: \\"local\\"' | Set-Content config\\config.yaml"
                         '''
                         
-                        echo "✅ Selenium Grid stopped and configuration restored"
+                        echo " Selenium Grid stopped and configuration restored"
                         
                     } catch (Exception e) {
-                        echo "⚠️ Failed to stop Selenium Grid: ${e}"
+                        echo " Failed to stop Selenium Grid: ${e}"
                         // Don't fail the build for cleanup issues
                     }
                 }
@@ -146,15 +146,15 @@ pipeline {
        
         stage('Archive Reports') {
             steps {
-                archiveArtifacts artifacts: 'Reports/*',
+                archiveArtifacts artifacts: 'reports/*',
                                 fingerprint: true,
                                 allowEmptyArchive: true
 
-                archiveArtifacts artifacts: 'Screenshots/*',
+                archiveArtifacts artifacts: 'screenshots/*',
                                 fingerprint: true,
                                 allowEmptyArchive: true
 
-                archiveArtifacts artifacts: 'Logs/*',
+                archiveArtifacts artifacts: 'logs/*',
                                 fingerprint: true,
                                 allowEmptyArchive: true
             }
@@ -186,10 +186,10 @@ pipeline {
                             commandline: 'Allure'
                         ])
                         
-                        echo "✅ Allure report generated successfully"
+                        echo " Allure report generated successfully"
                         
                     } catch (Exception e) {
-                        echo "❌ Failed to generate Allure report: ${e}"
+                        echo " Failed to generate Allure report: ${e}"
                         currentBuild.result = 'UNSTABLE'
                     }
                 }

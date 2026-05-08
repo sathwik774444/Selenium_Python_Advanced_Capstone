@@ -10,12 +10,11 @@ evn/
 .pytest_cache/
 .cache/
 
-reports/
-screenshots/
-logs/
+# reports/
+# screenshots/
+# logs/
 
 allure-results/
-allure-reports/
 
 .vscode/
 .idea/

@@ -30,7 +30,7 @@ def test_validate_api_to_ui_synchronization(browser):
     timeout = api_config.get("timeout", 30)
 
     valid_user = env_config.test_data["valid_user"]
-    note_data = env_config.test_data["note_data"]
+    note_data = env_config.test_data["note_data_e2e"]
 
     login_endpoint = f"{api_url}/users/login"
     notes_endpoint = f"{api_url}/notes"
@@ -38,9 +38,7 @@ def test_validate_api_to_ui_synchronization(browser):
     auth_token = None
     created_note_id = None
 
-    # ==========================================
     # STEP 1 - LOGIN VIA API
-    # ==========================================
 
     with allure.step("Login via API"):
 
@@ -76,9 +74,7 @@ def test_validate_api_to_ui_synchronization(browser):
         assert auth_token is not None, \
             "Authentication token not found"
 
-    # ==========================================
     # STEP 2 - CREATE NOTE VIA API
-    # ==========================================
 
     with allure.step("Create note via API"):
 
@@ -116,9 +112,7 @@ def test_validate_api_to_ui_synchronization(browser):
         assert created_note_id is not None, \
             "Created note ID not found"
 
-    # ==========================================
     # STEP 3 - DELETE NOTE VIA API
-    # ==========================================
 
     with allure.step("Delete note via API"):
 
@@ -146,9 +140,7 @@ def test_validate_api_to_ui_synchronization(browser):
         assert delete_response.status_code in [200, 202, 204], \
             f"Delete failed: {delete_response.status_code}"
 
-    # ==========================================
     # STEP 4 - LOGIN TO UI
-    # ==========================================
 
     login_page = LoginPage(browser)
     home_page = HomePage(browser)
@@ -166,9 +158,7 @@ def test_validate_api_to_ui_synchronization(browser):
         assert home_page.is_home_page_loaded(), \
             "Home page not loaded"
 
-    # ==========================================
     # STEP 5 - REFRESH NOTES PAGE
-    # ==========================================
 
     with allure.step("Refresh notes page"):
 
@@ -178,9 +168,7 @@ def test_validate_api_to_ui_synchronization(browser):
 
         time.sleep(3)
 
-    # ==========================================
     # STEP 6 - VALIDATE NOTE NOT VISIBLE
-    # ==========================================
 
     with allure.step("Validate deleted note not visible in UI"):
 
@@ -217,9 +205,7 @@ def test_validate_api_to_ui_synchronization(browser):
         assert not deleted_note_found, \
             f"Deleted note '{note_data['title']}' still visible in UI"
 
-    # ==========================================
     # STEP 7 - VALIDATE DOM HEALTH
-    # ==========================================
 
     with allure.step("Validate DOM health"):
 
@@ -252,9 +238,7 @@ def test_validate_api_to_ui_synchronization(browser):
         assert dom_healthy, \
             "DOM issues detected after deletion"
 
-    # ==========================================
     # TEST SUMMARY
-    # ==========================================
 
     with allure.step("Execution Summary"):
 
