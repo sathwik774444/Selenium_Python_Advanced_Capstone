@@ -12,6 +12,7 @@ from config.environment import env_config
 @allure.title("TC014: Test GET /notes without authentication")
 @allure.description("Validate that GET /notes API returns 401 status code when accessed without authentication")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.api
 def test_get_notes_without_authentication():
     """Test that GET /notes API returns 401 when accessed without authentication."""
     

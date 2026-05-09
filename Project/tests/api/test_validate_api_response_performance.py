@@ -12,6 +12,7 @@ from config.environment import env_config
 @allure.title("TC018: Test validate API response performance")
 @allure.description("Validate that API responses complete within 2 seconds for optimal performance")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.api
 def test_validate_api_response_performance():
     """Test validating API response performance - all responses should be under 2 seconds."""
     

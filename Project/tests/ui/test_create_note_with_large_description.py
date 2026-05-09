@@ -13,6 +13,8 @@ from config.environment import env_config
 @allure.title("TC009: Test create note with large description")
 @allure.description("Verify validation message appears when creating note with large description (>1500 characters)")
 @allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.ui
+@pytest.mark.notes
 def test_create_note_with_large_description(browser):
     """Test creating a note with large description and verify validation."""
     # 🔹 Initialize pages

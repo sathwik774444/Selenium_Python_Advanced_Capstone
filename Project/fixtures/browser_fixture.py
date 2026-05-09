@@ -68,12 +68,13 @@ class BrowserManager:
 
             if headless:
                 options.add_argument("--headless=new")
-
+                
             options.add_argument("--start-maximized")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-gpu")
-
+            options.add_argument("--disable-software-rasterizer")
+            
             driver = webdriver.Remote(
                 command_executor=grid_url,
                 options=options
@@ -270,52 +271,52 @@ def take_screenshot(driver, test_name=None):
         return None
 
 
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    """Hook to take screenshot on test failure."""
-    outcome = yield
-    rep = outcome.get_result()
+# @pytest.hookimpl(tryfirst=True, hookwrapper=True)
+# def pytest_runtest_makereport(item, call):
+#     """Hook to take screenshot on test failure."""
+#     outcome = yield
+#     rep = outcome.get_result()
     
-    if rep.when == "call" and rep.failed:
-        try:
-            # Get browser fixture from test item
-            if hasattr(item, "funcargs") and "browser" in item.funcargs:
-                driver = item.funcargs["browser"]
-                screenshot_path = take_screenshot(driver, item.name)
+#     if rep.when == "call" and rep.failed:
+#         try:
+#             # Get browser fixture from test item
+#             if hasattr(item, "funcargs") and "browser" in item.funcargs:
+#                 driver = item.funcargs["browser"]
+#                 screenshot_path = take_screenshot(driver, item.name)
                 
-                if screenshot_path:
-                    allure.attach.file(
-                        screenshot_path,
-                        name=f"Screenshot - {item.name}",
-                        attachment_type=allure.attachment_type.PNG
-                    )
-        except Exception as e:
-            logging.error(f"Failed to capture screenshot on failure: {e}")
+#                 if screenshot_path:
+#                     allure.attach.file(
+#                         screenshot_path,
+#                         name=f"Screenshot - {item.name}",
+#                         attachment_type=allure.attachment_type.PNG
+#                     )
+#         except Exception as e:
+#             logging.error(f"Failed to capture screenshot on failure: {e}")
 
 
-@pytest.fixture(scope="session", autouse=True)
-def configure_logging():
-    """Configure logging for the test session."""
-    log_level = env_config.get("logging.level", "WARNING")
-    log_format = env_config.get("logging.format", "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+# @pytest.fixture(scope="session", autouse=True)
+# def configure_logging():
+#     """Configure logging for the test session."""
+#     log_level = env_config.get("logging.level", "WARNING")
+#     log_format = env_config.get("logging.format", "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     
-    # Create logs directory
-    logs_dir = env_config.get("reporting.logs_dir", "logs")
-    os.makedirs(logs_dir, exist_ok=True)
+#     # Create logs directory
+#     logs_dir = env_config.get("reporting.logs_dir", "logs")
+#     os.makedirs(logs_dir, exist_ok=True)
     
-    # Configure logging
-    logging.basicConfig(
-        level=getattr(logging, log_level.upper()),
-        format=log_format,
-        handlers=[
-            logging.FileHandler(os.path.join(logs_dir, "test_execution.log")),
-            logging.StreamHandler()
-        ]
-    )
+#     # Configure logging
+#     logging.basicConfig(
+#         level=getattr(logging, log_level.upper()),
+#         format=log_format,
+#         handlers=[
+#             logging.FileHandler(os.path.join(logs_dir, "test_execution.log")),
+#             logging.StreamHandler()
+#         ]
+#     )
     
-    # Suppress Selenium debug logs
-    selenium_logger = logging.getLogger('selenium')
-    selenium_logger.setLevel(logging.WARNING)
+#     # Suppress Selenium debug logs
+#     selenium_logger = logging.getLogger('selenium')
+#     selenium_logger.setLevel(logging.WARNING)
     
-    urllib3_logger = logging.getLogger('urllib3.connectionpool')
-    urllib3_logger.setLevel(logging.WARNING)
+#     urllib3_logger = logging.getLogger('urllib3.connectionpool')
+#     urllib3_logger.setLevel(logging.WARNING)

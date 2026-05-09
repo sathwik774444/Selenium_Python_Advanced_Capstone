@@ -12,6 +12,8 @@ from config.environment import env_config
 @allure.title("TC005: Test dashboard redirect after login")
 @allure.description("Verify user is redirected to dashboard after successful login")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.ui
+@pytest.mark.login
 def test_verify_dashboard_redirect_after_login(browser):
     """Test successful login with valid credentials using stable locators."""
     # 🔹 Initialize pages

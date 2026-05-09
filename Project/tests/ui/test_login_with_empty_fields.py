@@ -10,6 +10,8 @@ from pages.login_page import LoginPage
 @allure.title("TC004: Test login with empty username and password fields")
 @allure.description("Verify login fails with empty username and password fields")
 @allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.ui
+@pytest.mark.login
 def test_login_with_empty_fields(browser):
     """Test login failure with empty fields."""
     login_page = LoginPage(browser)

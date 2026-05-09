@@ -12,6 +12,8 @@ from config.environment import env_config
 @allure.title("TC001: Test login with valid credentials")
 @allure.description("Verify user can login successfully with valid credentials")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.ui
+@pytest.mark.login
 def test_login_with_valid_credentials(browser):
     """Test successful login with valid credentials using stable locators."""
     # 🔹 Initialize pages

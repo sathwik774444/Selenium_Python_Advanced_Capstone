@@ -13,6 +13,8 @@ from config.environment import env_config
 @allure.title("TC010: Test create note with empty fields")
 @allure.description("Verify validation messages appear when creating note with empty title and description")
 @allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.ui
+@pytest.mark.notes
 def test_create_note_with_empty_fields(browser):
     """Test creating a note with empty fields and verify validation messages."""
     # 🔹 Initialize pages

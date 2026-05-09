@@ -13,6 +13,8 @@ from config.environment import env_config
 @allure.title("TC008: Test verify instant note display in UI")
 @allure.description("Verify that created note is instantly visible in the notes list")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.ui
+@pytest.mark.notes
 def test_verify_instant_note_display_in_ui(browser):
     """Test verifying that created note is instantly visible in UI."""
     # 🔹 Initialize pages

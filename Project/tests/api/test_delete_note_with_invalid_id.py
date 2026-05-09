@@ -12,6 +12,7 @@ from config.environment import env_config
 @allure.title("TC017: Test delete note with invalid ID")
 @allure.description("Validate that DELETE /notes/{id} API returns proper error when deleting note with invalid ID")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.api
 def test_delete_note_with_invalid_id():
     """Test deleting a note with invalid ID and validate error response."""
     

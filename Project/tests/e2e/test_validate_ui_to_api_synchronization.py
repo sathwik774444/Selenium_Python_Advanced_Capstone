@@ -16,12 +16,11 @@ from config.environment import env_config
 @allure.title("TC018: Test validate UI to API synchronization for note creation")
 @allure.description("Ensure that creating a note through the UI makes it available in the API notes list")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.e2e
 def test_validate_ui_to_api_synchronization(browser):
     """Test that UI note creation synchronizes with API by making note available in API response."""
 
-    # ==========================================
     # CONFIGURATION
-    # ==========================================
 
     api_config = env_config.api_config
     api_url = env_config.api_url
@@ -36,9 +35,7 @@ def test_validate_ui_to_api_synchronization(browser):
     created_note_title = None
     auth_token = None
 
-    # ==========================================
     # STEP 1 - CREATE NOTE THROUGH UI
-    # ==========================================
 
     with allure.step("Create note through UI"):
         
@@ -87,9 +84,7 @@ def test_validate_ui_to_api_synchronization(browser):
             attachment_type=allure.attachment_type.TEXT
         )
 
-    # ==========================================
     # STEP 2 - LOGIN VIA API TO GET TOKEN
-    # ==========================================
 
     with allure.step("Login via API to get authentication token"):
         
@@ -134,9 +129,7 @@ def test_validate_ui_to_api_synchronization(browser):
         except requests.exceptions.RequestException as e:
             pytest.fail(f"API login request failed: {str(e)}")
 
-    # ==========================================
     # STEP 3 - GET ALL NOTES FROM API
-    # ==========================================
 
     with allure.step("Get all notes from API"):
         
@@ -174,9 +167,7 @@ def test_validate_ui_to_api_synchronization(browser):
         except requests.exceptions.RequestException as e:
             pytest.fail(f"Get notes API request failed: {str(e)}")
 
-    # ==========================================
     # STEP 4 - VALIDATE CREATED NOTE IN API RESPONSE
-    # ==========================================
 
     with allure.step("Validate created note is visible in API response"):
         
@@ -236,9 +227,7 @@ def test_validate_ui_to_api_synchronization(browser):
         assert created_note_found_in_api, \
             f"UI-created note '{created_note_title}' should be visible in API response"
 
-    # ==========================================
     # STEP 5 - VALIDATE NOTE DETAILS MATCH
-    # ==========================================
 
     with allure.step("Validate note details match between UI and API"):
         
@@ -278,9 +267,7 @@ def test_validate_ui_to_api_synchronization(browser):
                     attachment_type=allure.attachment_type.TEXT
                 )
 
-    # ==========================================
     # TEST SUMMARY
-    # ==========================================
 
     with allure.step("UI-API synchronization test summary"):
         

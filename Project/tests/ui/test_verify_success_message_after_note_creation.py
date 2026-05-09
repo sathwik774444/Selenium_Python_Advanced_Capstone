@@ -13,6 +13,8 @@ from config.environment import env_config
 @allure.title("TC007: Test verify success message after note creation")
 @allure.description("Verify success message is displayed after creating a note")
 @allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.ui
+@pytest.mark.notes
 def test_verify_success_message_after_note_creation(browser):
     """Test verifying success message after note creation."""
     # 🔹 Initialize pages

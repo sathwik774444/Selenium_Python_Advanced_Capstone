@@ -11,6 +11,8 @@ from config.environment import env_config
 @allure.title("TC002: Test login with invalid username")
 @allure.description("Verify login fails with invalid username and valid password")
 @allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.ui
+@pytest.mark.login
 def test_login_with_invalid_username(browser):
     """Test login failure with invalid username."""
     login_page = LoginPage(browser)

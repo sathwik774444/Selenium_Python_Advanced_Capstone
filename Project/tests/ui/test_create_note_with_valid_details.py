@@ -13,6 +13,8 @@ from config.environment import env_config
 @allure.title("TC006: Test create note with valid details")
 @allure.description("Verify user can create a note with valid title and description")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.ui
+@pytest.mark.notes
 def test_create_note_with_valid_details(browser):
     """Test creating a note with valid title and description."""
     # 🔹 Initialize pages

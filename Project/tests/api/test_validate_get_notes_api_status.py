@@ -12,6 +12,7 @@ from config.environment import env_config
 @allure.title("TC011: Test validate GET /notes API status")
 @allure.description("Validate that GET /notes API endpoint returns status 200 with authentication")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.api
 def test_validate_get_notes_api_status():
     """Test validating GET /notes API endpoint status with authentication."""
     

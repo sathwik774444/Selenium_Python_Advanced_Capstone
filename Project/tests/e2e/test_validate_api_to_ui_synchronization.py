@@ -18,11 +18,10 @@ from config.environment import env_config
 @allure.story("Note Deletion Synchronization")
 @allure.title("TC017: Validate API to UI synchronization for note deletion")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.e2e
 def test_validate_api_to_ui_synchronization(browser):
 
-    # ==========================================
     # CONFIGURATION
-    # ==========================================
 
     api_config = env_config.api_config
     api_url = env_config.api_url

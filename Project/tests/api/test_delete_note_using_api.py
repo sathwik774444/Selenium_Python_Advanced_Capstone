@@ -12,6 +12,7 @@ from config.environment import env_config
 @allure.title("TC016: Test delete note using API")
 @allure.description("Validate that DELETE /notes/{id} API can successfully delete the latest note")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.api
 def test_delete_note_using_api():
     """Test deleting a note using API by getting notes first and deleting the latest one."""
     

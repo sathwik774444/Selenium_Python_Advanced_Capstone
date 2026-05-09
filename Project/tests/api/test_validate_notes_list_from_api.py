@@ -12,6 +12,7 @@ from config.environment import env_config
 @allure.title("TC012: Test validate notes list from API")
 @allure.description("Validate that GET /notes API response contains a list of notes and assert true/false")
 @allure.severity(allure.severity_level.CRITICAL)
+@pytest.mark.api
 def test_validate_notes_list_from_api():
     """Test validating that GET /notes API response contains a list of notes."""
     

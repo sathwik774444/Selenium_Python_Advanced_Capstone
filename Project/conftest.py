@@ -32,8 +32,7 @@ def pytest_configure(config):
         "allure-results",
         "screenshots", 
         "logs",
-        "reports",
-        "temp"
+        "reports"
     ]
     
     for directory in directories:
@@ -355,31 +354,31 @@ def pytest_runtest_makereport(item, call):
                 )
 
 
-def pytest_collection_modifyitems(config, items):
-    """Enhanced test collection with better marker management."""
-    for item in items:
-        # Add markers based on test location and content
-        test_path = str(item.fspath).lower()
+# def pytest_collection_modifyitems(config, items):
+#     """Enhanced test collection with better marker management."""
+#     for item in items:
+#         # Add markers based on test location and content
+#         test_path = str(item.fspath).lower()
         
-        # UI tests marker
-        if any(keyword in test_path for keyword in ["ui", "login", "notes", "dashboard"]):
-            if "ui" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.ui)
+#         # UI tests marker
+#         if any(keyword in test_path for keyword in ["ui", "login", "notes", "dashboard"]):
+#             if "ui" not in [mark.name for mark in item.iter_markers()]:
+#                 item.add_marker(pytest.mark.ui)
         
-        # API tests marker
-        if "api" in test_path:
-            if "api" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.api)
+#         # API tests marker
+#         if "api" in test_path:
+#             if "api" not in [mark.name for mark in item.iter_markers()]:
+#                 item.add_marker(pytest.mark.api)
         
-        # Performance tests marker
-        if "performance" in test_path:
-            if "performance" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.performance)
+#         # Performance tests marker
+#         if "performance" in test_path:
+#             if "performance" not in [mark.name for mark in item.iter_markers()]:
+#                 item.add_marker(pytest.mark.performance)
         
-        # Integration tests marker
-        if any(keyword in test_path for keyword in ["sync", "integration", "e2e"]):
-            if "integration" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.integration)
+#         # Integration tests marker
+#         if any(keyword in test_path for keyword in ["sync", "integration", "e2e"]):
+#             if "integration" not in [mark.name for mark in item.iter_markers()]:
+#                 item.add_marker(pytest.mark.integration)
 
 
 # Store current test name for global access
@@ -387,46 +386,6 @@ def pytest_collection_modifyitems(config, items):
 def pytest_runtest_setup(item):
     """Store current test name globally."""
     pytest.current_test_name = item.name
-
-@pytest.fixture(scope="session")
-def logger():
-    """Provide logger instance for tests."""
-    return logging.getLogger(__name__)
-
-@pytest.fixture(scope="session", autouse=True)
-def session_setup():
-    """Setup and teardown for entire test session."""
-    logging.info("Starting test session")
-    yield
-    logging.info("Test session completed")
-
-@pytest.fixture(scope="function", autouse=True)
-def test_setup_teardown(request):
-    """Setup and teardown for each test."""
-    test_name = request.node.name
-    logging.info(f"Starting test: {test_name}")
-    
-    yield
-    
-    logging.info(f"Completed test: {test_name}")
-
-def pytest_collection_modifyitems(config, items):
-    """Modify test collection to add markers dynamically."""
-    for item in items:
-        # Add UI marker to UI tests
-        if "ui" in item.nodeid or "login" in item.nodeid or "notes" in item.nodeid:
-            if "ui" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.ui)
-        
-        # Add API marker to API tests
-        if "api" in item.nodeid:
-            if "api" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.api)
-        
-        # Add E2E marker to E2E tests
-        if "e2e" in item.nodeid or "hybrid" in item.nodeid:
-            if "e2e" not in [mark.name for mark in item.iter_markers()]:
-                item.add_marker(pytest.mark.e2e)
 
 def pytest_html_report_title(report):
     """Customize HTML report title."""
