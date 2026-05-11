@@ -3,6 +3,8 @@
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
 import allure
+import logging
+from config.environment import env_config
 
 
 class LoginPage(BasePage):
@@ -11,14 +13,16 @@ class LoginPage(BasePage):
     # Locators
     BASE_LOGIN_BUTTON = (By.CSS_SELECTOR, "a[href='/notes/app/login']")
     EMAIL_INPUT = (By.ID, "email")
-    # EMAIL_INPUT = (By.CSS_SELECTOR, "input[data-testid='login-email']")
     PASSWORD_INPUT = (By.ID, "password")
-    # PASSWORD_INPUT = (By.CSS_SELECTOR, "input[data-testid='login-password']")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "button[data-testid='login-submit']")
-    LOGIN_FORM = (By.TAG_NAME, "form")
+    # LOGIN_FORM = (By.TAG_NAME, "form")
+    LOGIN_FORM = (By.CSS_SELECTOR, "div#root")
+    
     ERROR_MESSAGE = (By.CSS_SELECTOR, "div[data-testid='alert-message']")
-    # ERROR_MESSAGE = (By.CSS_SELECTOR, ".alert-danger")
     EMAIL_VALIDATION = (By.CSS_SELECTOR, "div.invalid-feedback")
+    #URLS
+    base_url = env_config.base_url
+    login_url = env_config.login_url
     
     def __init__(self, driver):
         """Initialize LoginPage with WebDriver instance."""
@@ -26,10 +30,9 @@ class LoginPage(BasePage):
     
     def navigate_to_login(self):
         """Navigate to login page."""
-        base_url = "https://practice.expandtesting.com/notes/app"
         with allure.step("Navigate to base app page"):
             try:
-                self.navigate_to(base_url)
+                self.navigate_to(self.base_url)
                 self.wait_for_page_load()
                 
                 # Wait a moment for page to stabilize
@@ -40,8 +43,7 @@ class LoginPage(BasePage):
                 self.logger.error(f"Failed to navigate to base page: {e}")
                 # Try direct navigation to login page
                 try:
-                    login_url = "https://practice.expandtesting.com/notes/app/login"
-                    self.driver.get(login_url)
+                    self.driver.get(self.login_url)
                     self.logger.info("Navigated directly to login page due to base page failure")
                     return
                 except Exception as direct_error:
@@ -54,11 +56,10 @@ class LoginPage(BasePage):
                 # Wait shorter time for page load to avoid timeout
                 time.sleep(2)
             except Exception as e:
-                self.logger.warning(f"Failed to click login button: {e}, trying direct navigation")
+                self.logger.warning(f"Failed to click login button: {e}")
                 # Fallback to direct navigation
                 try:
-                    login_url = "https://practice.expandtesting.com/notes/app/login"
-                    self.driver.get(login_url)
+                    self.driver.get(self.login_url)
                     self.logger.info("Used direct navigation as fallback")
                 except Exception as fallback_error:
                     self.logger.error(f"Fallback navigation failed: {fallback_error}")
@@ -84,7 +85,7 @@ class LoginPage(BasePage):
                 except Exception as retry_error:
                     self.logger.error(f"Retry also failed: {retry_error}")
             
-            self.logger.warning(f"Regular click failed: {e}, trying JavaScript click")
+            self.logger.warning(f"Regular click failed: , trying JavaScript click")#Important to show error use {e} before ,
             try:
                 # If regular click fails, try JavaScript click with element finding
                 from selenium.webdriver.support.ui import WebDriverWait
@@ -97,8 +98,7 @@ class LoginPage(BasePage):
                 self.logger.error(f"JavaScript click also failed: {js_error}")
                 # Last resort: try direct navigation to login page
                 try:
-                    login_url = "https://practice.expandtesting.com/notes/app/login"
-                    self.driver.get(login_url)
+                    self.driver.get(self.login_url)
                     self.logger.info("Navigated directly to login page as last resort")
                 except Exception as nav_error:
                     self.logger.error(f"Direct navigation also failed: {nav_error}")
@@ -121,6 +121,7 @@ class LoginPage(BasePage):
             
             # Wait for page to process
             self.wait_for_page_load()
+            self.logger.info("Login page loaded successfully")
     
     def enter_email(self, email):
         """Enter email in email input field."""
@@ -159,7 +160,7 @@ class LoginPage(BasePage):
                     except Exception as retry_error:
                         self.logger.error(f"Retry also failed: {retry_error}")
                 
-                self.logger.warning(f"Regular login click failed: {e}, trying JavaScript click")
+                self.logger.warning(f"Regular login click failed: , trying JavaScript click")#Important to show error use {e} before ,
                 try:
                     # If regular click fails, try JavaScript click with shorter wait
                     from selenium.webdriver.support.ui import WebDriverWait
@@ -312,7 +313,7 @@ class LoginPage(BasePage):
     def wait_for_login_page_load(self):
         """Wait for login page to fully load."""
         with allure.step("Wait for login page to load"):
-            self.wait_for_element(self.LOGIN_FORM)
+            # self.wait_for_element(self.LOGIN_FORM)
             self.wait_for_element(self.EMAIL_INPUT)
             self.wait_for_element(self.PASSWORD_INPUT)
             self.wait_for_element(self.LOGIN_BUTTON)

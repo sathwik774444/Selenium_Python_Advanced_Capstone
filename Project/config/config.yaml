@@ -1,13 +1,13 @@
 #Test Urls
 environment:
-  base_url: "https://practice.expandtesting.com"
-  ui_url: "https://practice.expandtesting.com/notes/app/login"
+  base_url: "https://practice.expandtesting.com/notes/app"
+  login_url: "https://practice.expandtesting.com/notes/app/login"
   api_url: "https://practice.expandtesting.com/notes/api"
 
 
 #Execution mode
 execution:
-  mode: "remote" # local or remote
+  mode: "local" # local or remote
 
 #selenium grid 
 selenium_grid:

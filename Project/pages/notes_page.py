@@ -22,7 +22,8 @@ class NotesPage(BasePage):
     NOTES_LIST = (By.CSS_SELECTOR, ".notes-list")
     EMPTY_STATE_MESSAGE = (By.CSS_SELECTOR, "div[data-testid='empty-state']")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "div[data-testid='success-message']")
-    DESCRIPTION_VALIDATOR = (By.CSS_SELECTOR, "div.invalid-feedback")
+    # DESCRIPTION_VALIDATOR = (By.CSS_SELECTOR, "div.invalid-feedback")
+    DESCRIPTION_VALIDATOR = (By.XPATH,'//textarea[@data-testid="note-description"]/following-sibling::div[@class="invalid-feedback"]')
     TITLE_VALIDATION = (By.CSS_SELECTOR, "div.invalid-feedback")
     
     def __init__(self, driver):
@@ -136,41 +137,33 @@ class NotesPage(BasePage):
     def is_note_with_title_visible(self, title):
         """Check if note with specific title is visible."""
         try:
-            # Try multiple approaches to find the note
-            # Approach 1: Using note items
-            notes = self.driver.find_elements(*self.NOTE_ITEM)
-            for note in notes:
+            note_elements = self.driver.find_elements(By.CSS_SELECTOR,'div[data-testid="note-card-title"]')
+            ui_notes = []
+
+            for element in note_elements:
                 try:
-                    # Try different possible title locators
-                    title_selectors = [
-                        ".note-title",
-                        ".title",
-                        "h3", "h4", "h5",
-                        "[data-testid='note-title']",
-                        ".note-content h3",
-                        ".note-content h4"
-                    ]
-                    
-                    for selector in title_selectors:
-                        try:
-                            title_element = note.find_element(By.CSS_SELECTOR, selector)
-                            if title_element.text.strip() == title.strip():
-                                return True
-                        except:
-                            continue
-                except:
+                    note_text = element.text.strip()
+                    if note_text:
+                        ui_notes.append(note_text)
+                except Exception:
                     continue
-            
-            # Approach 2: Search entire page for the title
-            page_text = self.driver.page_source
-            if title in page_text:
-                return True
                 
+            self.logger.info(f"Titles:{ui_notes}")
+            self.logger.info(f"Created title is : {title}")
+            for note in ui_notes:
+                self.logger.info(f"{note} : {title}")
+                if note == title:
+                    return True    
             return False
         except Exception as e:
             self.logger.error(f"Error checking note visibility: {e}")
             return False
     
+    def get_note_title(self):
+        NOTE_CARD_TITLE = (By.CSS_SELECTOR, 'div[data-testid="note-card-title"]')
+        note_title = driver.find_element(*NOTE_CARD_TITLE).text
+        self.logger.info(f"This is the title :{note_title}")
+        
     # def get_note_title_by_index(self, index):
     #     """Get note title by index (0-based)."""
     #     try:

@@ -33,10 +33,11 @@ class BasePage:
             self.logger.error(f"Failed to navigate to {url}: {e}")
             raise
     
-    def wait_for_element(self, locator, timeout=None):
+    def wait_for_element(self, locator, timeout=5):
         """Wait for element to be visible."""
         wait = WebDriverWait(self.driver, timeout) if timeout else self.wait
         try:
+            # self.scroll_to_element(locator)
             element = wait.until(EC.visibility_of_element_located(locator))
             return element
         except Exception as e:
@@ -61,34 +62,34 @@ class BasePage:
                 self.logger.error(f"Element not clickable even on retry: {locator} - {retry_error}")
                 raise
     
-    # def safe_click(self, element):
-    #     """
-    #     Advanced Enterprise Solution - Safe click with scroll and JavaScript fallback.
-    #     Handles advertisement iframe blocking and other click interference issues.
-    #     """
-    #     try:
-    #         # Fix 3: Scroll element into view before clicking
-    #         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+    def safe_click(self, element):
+        """
+        Advanced Enterprise Solution - Safe click with scroll and JavaScript fallback.
+        Handles advertisement iframe blocking and other click interference issues.
+        """
+        try:
+            # Fix 3: Scroll element into view before clicking
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
             
-    #         # Fix 4: Add small wait for UI stability
-    #         import time
-    #         time.sleep(0.5)
+            # Fix 4: Add small wait for UI stability
+            import time
+            time.sleep(0.5)
             
-    #         # Try normal click first
-    #         try:
-    #             element.click()
-    #             self.logger.info("Element clicked successfully with normal click")
-    #             return True
-    #         except Exception as click_error:
-    #             self.logger.warning(f"Normal click failed: {click_error}, trying JavaScript click")
-    #             # Fix 6: JavaScript click as fallback
-    #             self.driver.execute_script("arguments[0].click();", element)
-    #             self.logger.info("Element clicked successfully with JavaScript click")
-    #             return True
+            # Try normal click first
+            try:
+                element.click()
+                self.logger.info("Element clicked successfully with normal click")
+                return True
+            except Exception as click_error:
+                self.logger.warning(f"Normal click failed: {click_error}, trying JavaScript click")
+                # Fix 6: JavaScript click as fallback
+                self.driver.execute_script("arguments[0].click();", element)
+                self.logger.info("Element clicked successfully with JavaScript click")
+                return True
                 
-    #     except Exception as e:
-    #         self.logger.error(f"Safe click failed completely: {e}")
-    #         raise
+        except Exception as e:
+            self.logger.error(f"Safe click failed completely: {e}")
+            raise
     
     
     # def safe_click(self, locator, timeout=15, retries=3): first
@@ -356,6 +357,30 @@ class BasePage:
     #     except Exception as e:
     #         self.logger.error(f"Failed to scroll to element: {locator} - {e}")
     #         raise
+        
+    def scroll_to_element(self, locator):
+        """Scroll to specific element."""
+
+        try:
+
+            element = self.wait_for_element(locator)
+
+            self.driver.execute_script(
+                "arguments[0].scrollIntoView({block:'center'});",
+                element
+            )
+
+            self.logger.info(
+                f"Scrolled to element: {locator}"
+            )
+
+        except Exception as e:
+
+            self.logger.error(
+                f"Failed to scroll to element: {locator} - {e}"
+            )
+
+            raise
     
     # def take_screenshot(self, name="screenshot"):
     #     """Take screenshot and attach to Allure report."""

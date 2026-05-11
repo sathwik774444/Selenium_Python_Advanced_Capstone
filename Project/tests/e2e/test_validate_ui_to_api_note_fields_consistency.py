@@ -17,7 +17,7 @@ from config.environment import env_config
 @allure.description("Ensure that creating a note through the UI makes it available in the API notes list")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.e2e
-def test_validate_ui_to_api_synchronization(browser):
+def test_validate_ui_to_api_note_fields_consistency(browser):
     """Test that UI note creation synchronizes with API by making note available in API response."""
 
     # CONFIGURATION
@@ -281,7 +281,7 @@ def test_validate_ui_to_api_synchronization(browser):
             API Status Code: {get_notes_response.status_code}
             Note Found in API: {created_note_found_in_api}
             
-            Synchronization Status: {'✅ SUCCESS' if created_note_found_in_api else '❌ FAILED'}
+            Synchronization Status: {' SUCCESS' if created_note_found_in_api else ' FAILED'}
             """,
             name="Test Execution Summary",
             attachment_type=allure.attachment_type.TEXT

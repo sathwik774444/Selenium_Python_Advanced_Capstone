@@ -42,9 +42,9 @@ class EnvironmentConfig:
         return self.get("environment.base_url")
     
     @property
-    def ui_url(self):
+    def login_url(self):
         """Get UI URL."""
-        return self.get("environment.ui_url")
+        return self.get("environment.login_url")
     
     @property
     def api_url(self):

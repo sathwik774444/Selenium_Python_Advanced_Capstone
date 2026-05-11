@@ -17,6 +17,7 @@ class HomePage(BasePage):
         try:
             # Wait for any of the home page indicators to be visible
             if self.is_element_visible(self.HOME_LINK, timeout=10):
+                self.logger.info("Home page is loaded successfully")
                 return True
             return False
         except Exception as e:

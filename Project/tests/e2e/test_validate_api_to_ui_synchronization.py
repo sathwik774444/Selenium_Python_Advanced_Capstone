@@ -5,6 +5,7 @@ import allure
 import requests
 import json
 import time
+import logging
 
 from selenium.webdriver.common.by import By
 
@@ -161,7 +162,7 @@ def test_validate_api_to_ui_synchronization(browser):
 
     with allure.step("Refresh notes page"):
 
-        notes_page.wait_for_notes_page_load()
+        # notes_page.wait_for_notes_page_load()
 
         browser.refresh()
 
@@ -171,11 +172,16 @@ def test_validate_api_to_ui_synchronization(browser):
 
     with allure.step("Validate deleted note not visible in UI"):
 
-        note_elements = browser.find_elements(
-            By.CSS_SELECTOR,
-            ".note-item, .note, [class*='note'], [class*='card']"
-        )
-
+        # notes_page.get_note_title()
+        # note_elements = browser.find_elements(
+        #     By.CSS_SELECTOR,
+        #     ".note-item, .note, [class*='note'], [class*='card']"
+        # )
+        # NOTE_CARD_TITLE = (By.CSS_SELECTOR, 'div[data-testid="note-card-title"]')
+        # note_title = driver.find_element(*NOTE_CARD_TITLE).text
+        # print(note_title)
+        note_elements = browser.find_elements(By.CSS_SELECTOR,'div[data-testid="note-card-title"]')
+        
         ui_notes = []
 
         for element in note_elements:
