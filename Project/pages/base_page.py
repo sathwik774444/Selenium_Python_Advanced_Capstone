@@ -90,165 +90,7 @@ class BasePage:
         except Exception as e:
             self.logger.error(f"Safe click failed completely: {e}")
             raise
-    
-    
-    # def safe_click(self, locator, timeout=15, retries=3): first
-
-    #     for attempt in range(retries):
-
-    #         try:
-    #             # Wait for presence
-    #             element = WebDriverWait(self.driver, timeout).until(
-    #                 EC.presence_of_element_located(locator)
-    #             )
-
-    #             # Scroll into center
-    #             self.driver.execute_script(
-    #                 "arguments[0].scrollIntoView({block:'center'});",
-    #                 element
-    #             )
-
-    #             # Wait until clickable
-    #             WebDriverWait(self.driver, timeout).until(
-    #                 EC.element_to_be_clickable(locator)
-    #             )
-
-    #             # Small stabilization
-    #             time.sleep(0.5)
-
-    #             try:
-    #                 element.click()
-
-    #                 self.logger.info(
-    #                     f"Clicked successfully: {locator}"
-    #                 )
-
-    #                 return True
-
-    #             except ElementClickInterceptedException as e:
-
-    #                 self.logger.warning(
-    #                     f"Click intercepted: {e}"
-    #                 )
-
-    #                 # Handle popups/ads
-    #                 self.close_ads_if_present()
-
-    #                 time.sleep(1)
-
-    #                 # Retry normal click
-    #                 try:
-    #                     element.click()
-    #                     return True
-
-    #                 except:
-    #                     self.logger.warning(
-    #                         "Using JavaScript click fallback"
-    #                     )
-
-    #                     self.driver.execute_script(
-    #                         "arguments[0].click();",
-    #                         element
-    #                     )
-
-    #                     return True
-
-    #         except StaleElementReferenceException:
-
-    #             self.logger.warning(
-    #                 f"Stale element retry {attempt + 1}"
-    #             )
-
-    #             time.sleep(1)
-
-    #         except TimeoutException as e:
-
-    #             self.logger.error(
-    #                 f"Element not clickable: {locator}"
-    #             )
-
-    #             raise e
-
-    #     raise Exception(
-    #         f"Failed to click after {retries} retries: {locator}"
-    #     )
-    
-    # def safe_click(self, locator, timeout=15, retries=3): second
-
-    #     for attempt in range(retries):
-
-    #         try:
-
-    #             # Close popups BEFORE click
-    #             self.close_ads_if_present()
-
-    #             # Wait clickable directly
-    #             element = WebDriverWait(self.driver, timeout).until(
-    #                 EC.element_to_be_clickable(locator)
-    #             )
-
-    #             # Scroll into center
-    #             self.driver.execute_script(
-    #                 "arguments[0].scrollIntoView({block:'center'});",
-    #                 element
-    #             )
-
-    #             time.sleep(0.5)
-
-    #             try:
-
-    #                 element.click()
-
-    #                 self.logger.info(
-    #                     f"Clicked successfully: {locator}"
-    #                 )
-
-    #                 return True
-
-    #             except ElementClickInterceptedException as e:
-
-    #                 self.logger.warning(
-    #                     f"Click intercepted: {e}"
-    #                 )
-
-    #                 # Try closing popup again
-    #                 self.close_ads_if_present()
-
-    #                 time.sleep(1)
-
-    #                 try:
-
-    #                     element.click()
-
-    #                     return True
-
-    #                 except Exception:
-
-    #                     self.logger.warning(
-    #                         "Using JavaScript click fallback"
-    #                     )
-
-    #                     self.driver.execute_script(
-    #                         "arguments[0].click();",
-    #                         element
-    #                     )
-
-    #                     return True
-
-    #         except (
-    #             StaleElementReferenceException,
-    #             TimeoutException
-    #         ) as e:
-
-    #             self.logger.warning(
-    #                 f"Retry {attempt + 1}/{retries}: {e}"
-    #             )
-
-    #             time.sleep(1)
-
-    #     raise Exception(
-    #         f"Failed to click after {retries} retries: {locator}"
-    #     )
+        
         
     def click_element(self, locator):
         """Click on element using enhanced safe_click method."""
@@ -292,13 +134,6 @@ class BasePage:
         except Exception:
             return False
     
-    # def is_element_present(self, locator):
-    #     """Check if element is present in DOM."""
-    #     try:
-    #         self.driver.find_element(*locator)
-    #         return True
-    #     except Exception:
-    #         return False
     
     def wait_for_page_load(self, timeout=30):
         """Wait for page to load completely."""
@@ -348,15 +183,6 @@ class BasePage:
                 self.logger.error(f"Last resort navigation failed: {nav_error}")
                 raise
     
-    # def scroll_to_element(self, locator):
-    #     """Scroll to specific element."""
-    #     try:
-    #         element = self.wait_for_element(locator)
-    #         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
-    #         self.logger.info(f"Scrolled to element: {locator}")
-    #     except Exception as e:
-    #         self.logger.error(f"Failed to scroll to element: {locator} - {e}")
-    #         raise
         
     def scroll_to_element(self, locator):
         """Scroll to specific element."""
@@ -381,23 +207,3 @@ class BasePage:
             )
 
             raise
-    
-    # def take_screenshot(self, name="screenshot"):
-    #     """Take screenshot and attach to Allure report."""
-    #     try:
-    #         screenshot_path = f"screenshots/{name}_{self.driver.title}.png"
-    #         self.driver.save_screenshot(screenshot_path)
-    #         allure.attach.file(screenshot_path, name=name, attachment_type=allure.attachment_type.PNG)
-    #         self.logger.info(f"Screenshot taken: {screenshot_path}")
-    #         return screenshot_path
-    #     except Exception as e:
-    #         self.logger.error(f"Failed to take screenshot: {e}")
-    #         return None
-    
-    # def get_current_url(self):
-    #     """Get current page URL."""
-    #     return self.driver.current_url
-    
-    # def get_page_title(self):
-    #     """Get current page title."""
-    #     return self.driver.title

@@ -354,33 +354,6 @@ def pytest_runtest_makereport(item, call):
                 )
 
 
-# def pytest_collection_modifyitems(config, items):
-#     """Enhanced test collection with better marker management."""
-#     for item in items:
-#         # Add markers based on test location and content
-#         test_path = str(item.fspath).lower()
-        
-#         # UI tests marker
-#         if any(keyword in test_path for keyword in ["ui", "login", "notes", "dashboard"]):
-#             if "ui" not in [mark.name for mark in item.iter_markers()]:
-#                 item.add_marker(pytest.mark.ui)
-        
-#         # API tests marker
-#         if "api" in test_path:
-#             if "api" not in [mark.name for mark in item.iter_markers()]:
-#                 item.add_marker(pytest.mark.api)
-        
-#         # Performance tests marker
-#         if "performance" in test_path:
-#             if "performance" not in [mark.name for mark in item.iter_markers()]:
-#                 item.add_marker(pytest.mark.performance)
-        
-#         # Integration tests marker
-#         if any(keyword in test_path for keyword in ["sync", "integration", "e2e"]):
-#             if "integration" not in [mark.name for mark in item.iter_markers()]:
-#                 item.add_marker(pytest.mark.integration)
-
-
 # Store current test name for global access
 @pytest.hookimpl(tryfirst=True)
 def pytest_runtest_setup(item):

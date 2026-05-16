@@ -133,11 +133,6 @@ class LoginPage(BasePage):
         with allure.step("Enter password"):
             self.type_text(self.PASSWORD_INPUT, password)
     
-    # def click_login_button(self): for safe click
-        
-    #     with allure.step("Click login button"):
-    #         self.safe_click(self.LOGIN_BUTTON)
-    #         self.logger.info("Login button clicked successfully")
             
     def click_login_button(self):
         """Click login button."""
@@ -250,65 +245,15 @@ class LoginPage(BasePage):
             return self.get_text(self.EMAIL_VALIDATION)
         return None
     
-    # def get_password_validation_message(self):
-    #     """Get password validation message text."""
-    #     if self.is_element_visible(self.EMAIL_VALIDATION, timeout=5):
-    #         return self.get_text(self.EMAIL_VALIDATION)
-    #     return None
     
     def is_email_validation_displayed(self):
         """Check if email validation message is displayed."""
         return self.is_element_visible(self.EMAIL_VALIDATION, timeout=5)
-    
-    # def is_password_validation_displayed(self):
-    #     """Check if password validation message is displayed."""
-    #     return self.is_element_visible(self.EMAIL_VALIDATION, timeout=5)
-    
-    # def email_validation(self):
-    #     """Check email field validation and return True if validation message is displayed."""
-    #     try:
-    #         if self.is_email_validation_displayed():
-    #             self.logger.info("Email validation message detected")
-    #             return True
-    #         else:
-    #             self.logger.info("No email validation message detected")
-    #             return False
-    #     except Exception as e:
-    #         self.logger.error(f"Error checking email validation: {e}")
-    #         return False
-    
-    # def password_validation(self):
-    #     """Check password field validation and return True if validation message is displayed."""
-    #     try:
-    #         if self.is_password_validation_displayed():
-    #             self.logger.info("Password validation message detected")
-    #             return True
-    #         else:
-    #             self.logger.info("No password validation message detected")
-    #             return False
-    #     except Exception as e:
-    #         self.logger.error(f"Error checking password validation: {e}")
-    #         return False
-    
-
 
     def is_login_form_displayed(self):
         """Check if login form is displayed."""
         return self.is_element_visible(self.LOGIN_FORM)
-    
-    # def is_login_button_enabled(self):
-    #     """Check if login button is enabled."""
-    #     try:
-    #         button = self.wait_for_element(self.LOGIN_BUTTON)
-    #         return button.is_enabled()
-    #     except Exception:
-    #         return False
-    
-    # def click_register_link(self):
-    #     """Click register link."""
-    #     with allure.step("Click register link"):
-    #         self.click_element(self.REGISTER_LINK)
-    
+        
     
     def wait_for_login_page_load(self):
         """Wait for login page to fully load."""
@@ -318,15 +263,3 @@ class LoginPage(BasePage):
             self.wait_for_element(self.PASSWORD_INPUT)
             self.wait_for_element(self.LOGIN_BUTTON)
     
-    # def get_page_title(self):
-    #     """Get login page title."""
-    #     return super().get_page_title()
-    
-    # def is_login_page_loaded(self):
-    #     """Check if login page is loaded successfully."""
-    #     try:
-    #         return (self.is_element_visible(self.EMAIL_INPUT) and 
-    #                self.is_element_visible(self.PASSWORD_INPUT) and 
-    #                self.is_element_visible(self.LOGIN_BUTTON))
-    #     except Exception:
-    #         return False

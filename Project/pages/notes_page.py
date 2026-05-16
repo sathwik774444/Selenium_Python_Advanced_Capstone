@@ -95,9 +95,6 @@ class NotesPage(BasePage):
         """Check if note form is displayed."""
         return self.is_element_visible(self.NOTE_FORM, timeout=5)
     
-    # def is_notes_list_displayed(self):
-    #     """Check if notes list is displayed."""
-    #     return self.is_element_visible(self.NOTES_LIST, timeout=5)
     
     def get_notes_count(self):
         """Get count of notes displayed."""
@@ -164,84 +161,6 @@ class NotesPage(BasePage):
         note_title = driver.find_element(*NOTE_CARD_TITLE).text
         self.logger.info(f"This is the title :{note_title}")
         
-    # def get_note_title_by_index(self, index):
-    #     """Get note title by index (0-based)."""
-    #     try:
-    #         notes = self.driver.find_elements(*self.NOTE_ITEM)
-    #         if index < len(notes):
-    #             title_element = notes[index].find_element(*self.NOTE_TITLE_TEXT)
-    #             return title_element.text.strip()
-    #         return None
-    #     except Exception:
-    #         return None
-    
-    # def get_note_description_by_index(self, index):
-    #     """Get note description by index (0-based)."""
-    #     try:
-    #         notes = self.driver.find_elements(*self.NOTE_ITEM)
-    #         if index < len(notes):
-    #             desc_element = notes[index].find_element(*self.NOTE_DESCRIPTION_TEXT)
-    #             return desc_element.text.strip()
-    #         return None
-    #     except Exception:
-    #         return None
-    
-    # def edit_note_by_title(self, title, new_title=None, new_description=None):
-    #     """Edit note with specific title."""
-    #     with allure.step(f"Edit note with title: {title}"):
-    #         # Find the note with given title
-    #         notes = self.driver.find_elements(*self.NOTE_ITEM)
-    #         for note in notes:
-    #             title_element = note.find_element(*self.NOTE_TITLE_TEXT)
-    #             if title_element.text.strip() == title.strip():
-    #                 # Click edit button for this note
-    #                 edit_button = note.find_element(*self.EDIT_NOTE_BUTTON)
-    #                 edit_button.click()
-                    
-    #                 # Wait for form to appear
-    #                 self.wait_for_element(self.NOTE_FORM)
-                    
-    #                 # Update title if provided
-    #                 if new_title:
-    #                     self.enter_note_title(new_title)
-                    
-    #                 # Update description if provided
-    #                 if new_description:
-    #                     self.enter_note_description(new_description)
-                    
-    #                 # Save changes
-    #                 self.click_save_note_button()
-    #                 self.wait_for_note_save_completion()
-    #                 return True
-    #         return False
-    
-    # def delete_note_by_title(self, title):
-    #     """Delete note with specific title."""
-    #     with allure.step(f"Delete note with title: {title}"):
-    #         # Find the note with given title
-    #         notes = self.driver.find_elements(*self.NOTE_ITEM)
-    #         for note in notes:
-    #             title_element = note.find_element(*self.NOTE_TITLE_TEXT)
-    #             if title_element.text.strip() == title.strip():
-    #                 # Click delete button for this note
-    #                 delete_button = note.find_element(*self.DELETE_NOTE_BUTTON)
-    #                 delete_button.click()
-                    
-    #                 # Wait for deletion to complete
-    #                 import time
-    #                 time.sleep(2)
-    #                 return True
-    #         return False
-    
-    # def is_empty_state_displayed(self):
-    #     """Check if empty state message is displayed."""
-    #     return self.is_element_visible(self.EMPTY_STATE_MESSAGE, timeout=5)
-    
-    # def get_empty_state_message(self):
-    #     """Get empty state message text."""
-    #     if self.is_empty_state_displayed():
-    #         return self.get_text(self.EMPTY_STATE_MESSAGE)
-    #     return None
     
     def is_success_message_displayed(self):
         """Check if success message is displayed."""
@@ -295,7 +214,3 @@ class NotesPage(BasePage):
         """Wait for notes page to fully load."""
         with allure.step("Wait for notes page to load"):
             self.wait_for_element(self.ADD_NOTES_BUTTON)
-    
-    # def is_notes_page_loaded(self):
-    #     """Check if notes page is loaded successfully."""
-    #     return self.is_element_visible(self.ADD_NOTES_BUTTON, timeout=10)

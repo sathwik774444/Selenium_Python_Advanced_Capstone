@@ -22314,3 +22314,107 @@ Stacktrace:
 2026-05-11 09:38:37,489 - root - INFO - Completed test: test_login_with_empty_fields
 2026-05-11 09:38:37,491 - root - INFO - Test session completed
 2026-05-11 09:38:37,520 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
+2026-05-11 11:44:15,304 - root - INFO - Starting test session
+2026-05-11 11:44:15,304 - root - INFO - Starting test: test_login_with_valid_credentials
+2026-05-11 11:44:15,307 - fixtures.browser_fixture - INFO - Execution Mode: remote
+2026-05-11 11:44:15,307 - fixtures.browser_fixture - INFO - Connecting to Selenium Grid: http://localhost:4444/wd/hub
+2026-05-11 11:44:19,398 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=4444): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /wd/hub/session
+2026-05-11 11:44:23,507 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=4444): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /wd/hub/session
+2026-05-11 11:44:27,608 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=4444): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /wd/hub/session
+2026-05-11 11:44:32,277 - root - INFO - Completed test: test_login_with_valid_credentials
+2026-05-11 11:44:32,277 - root - INFO - Test session completed
+2026-05-11 11:44:32,302 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
+2026-05-11 11:44:43,122 - root - INFO - Starting test session
+2026-05-11 11:44:43,123 - root - INFO - Starting test: test_login_with_valid_credentials
+2026-05-11 11:44:43,126 - fixtures.browser_fixture - INFO - Execution Mode: remote
+2026-05-11 11:44:43,126 - fixtures.browser_fixture - INFO - Connecting to Selenium Grid: http://localhost:4444/wd/hub
+2026-05-11 11:44:47,225 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=4444): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /wd/hub/session
+2026-05-11 11:44:51,317 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=4444): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /wd/hub/session
+2026-05-11 11:44:55,397 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=4444): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it")': /wd/hub/session
+2026-05-11 11:44:59,720 - root - INFO - Completed test: test_login_with_valid_credentials
+2026-05-11 11:44:59,720 - root - INFO - Test session completed
+2026-05-11 11:44:59,749 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
+2026-05-11 11:45:11,397 - root - INFO - Starting test session
+2026-05-11 11:45:11,397 - root - INFO - Starting test: test_login_with_valid_credentials
+2026-05-11 11:45:11,399 - fixtures.browser_fixture - INFO - Execution Mode: local
+2026-05-11 11:45:11,400 - WDM - INFO - ====== WebDriver manager ======
+2026-05-11 11:45:13,100 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:45:13,651 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:45:14,082 - WDM - INFO - Driver [C:\Users\sathw\.wdm\drivers\chromedriver\win64\148.0.7778.97\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2026-05-11 11:45:22,078 - pages.base_page - INFO - Navigated to: https://practice.expandtesting.com/notes/app
+2026-05-11 11:45:22,091 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:45:24,302 - pages.base_page - WARNING - Regular click failed: , trying JavaScript click
+2026-05-11 11:45:26,604 - pages.base_page - INFO - Successfully clicked base login button with JavaScript click
+2026-05-11 11:45:28,888 - pages.base_page - INFO - Typed text into element: ('id', 'email')
+2026-05-11 11:45:29,012 - pages.base_page - INFO - Typed text into element: ('id', 'password')
+2026-05-11 11:45:30,138 - pages.base_page - WARNING - Regular login click failed: , trying JavaScript click
+2026-05-11 11:45:30,219 - pages.base_page - INFO - Successfully clicked login button with JavaScript click
+2026-05-11 11:45:30,226 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:45:30,226 - pages.base_page - INFO - Login page loaded successfully
+2026-05-11 11:45:30,604 - pages.base_page - INFO - Home page is loaded successfully
+2026-05-11 11:45:30,649 - pages.base_page - INFO - Home page is loaded successfully
+2026-05-11 11:45:32,931 - root - INFO - Completed test: test_login_with_valid_credentials
+2026-05-11 11:45:32,932 - root - INFO - Test session completed
+2026-05-11 11:45:32,960 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
+2026-05-11 11:48:33,565 - root - INFO - Starting test session
+2026-05-11 11:48:33,568 - root - INFO - Starting test: test_login_with_valid_credentials
+2026-05-11 11:48:33,570 - fixtures.browser_fixture - INFO - Execution Mode: local
+2026-05-11 11:48:33,571 - WDM - INFO - ====== WebDriver manager ======
+2026-05-11 11:48:34,868 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:48:35,302 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:48:35,788 - WDM - INFO - Driver [C:\Users\sathw\.wdm\drivers\chromedriver\win64\148.0.7778.97\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2026-05-11 11:48:41,568 - pages.base_page - INFO - Navigated to: https://practice.expandtesting.com/notes/app
+2026-05-11 11:48:41,577 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:48:43,775 - pages.base_page - WARNING - Regular click failed: , trying JavaScript click
+2026-05-11 11:48:46,879 - pages.base_page - INFO - Successfully clicked base login button with JavaScript click
+2026-05-11 11:48:49,300 - pages.base_page - INFO - Typed text into element: ('id', 'email')
+2026-05-11 11:48:49,475 - pages.base_page - INFO - Typed text into element: ('id', 'password')
+2026-05-11 11:48:50,608 - pages.base_page - WARNING - Regular login click failed: , trying JavaScript click
+2026-05-11 11:48:50,661 - pages.base_page - INFO - Successfully clicked login button with JavaScript click
+2026-05-11 11:48:50,668 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:48:50,668 - pages.base_page - INFO - Login page loaded successfully
+2026-05-11 11:48:51,093 - pages.base_page - INFO - Home page is loaded successfully
+2026-05-11 11:48:51,137 - pages.base_page - INFO - Home page is loaded successfully
+2026-05-11 11:48:53,446 - root - INFO - Completed test: test_login_with_valid_credentials
+2026-05-11 11:48:53,452 - root - INFO - Test session completed
+2026-05-11 11:48:53,478 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
+2026-05-11 11:53:49,090 - root - INFO - Starting test session
+2026-05-11 11:53:49,091 - root - INFO - Starting test: test_validate_api_to_ui_synchronization
+2026-05-11 11:53:49,092 - fixtures.browser_fixture - INFO - Execution Mode: local
+2026-05-11 11:53:49,092 - WDM - INFO - ====== WebDriver manager ======
+2026-05-11 11:53:50,414 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:53:50,923 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:53:51,360 - WDM - INFO - Driver [C:\Users\sathw\.wdm\drivers\chromedriver\win64\148.0.7778.97\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2026-05-11 11:54:20,425 - pages.base_page - INFO - Navigated to: https://practice.expandtesting.com/notes/app
+2026-05-11 11:54:20,440 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:54:22,648 - pages.base_page - WARNING - Regular click failed: , trying JavaScript click
+2026-05-11 11:54:24,076 - pages.base_page - INFO - Successfully clicked base login button with JavaScript click
+2026-05-11 11:54:26,462 - pages.base_page - INFO - Typed text into element: ('id', 'email')
+2026-05-11 11:54:26,630 - pages.base_page - INFO - Typed text into element: ('id', 'password')
+2026-05-11 11:54:26,862 - pages.base_page - INFO - Successfully clicked login button with regular click
+2026-05-11 11:54:26,876 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:54:26,877 - pages.base_page - INFO - Login page loaded successfully
+2026-05-11 11:54:27,244 - pages.base_page - INFO - Home page is loaded successfully
+2026-05-11 11:54:37,302 - root - INFO - Completed test: test_validate_api_to_ui_synchronization
+2026-05-11 11:54:37,303 - root - INFO - Test session completed
+2026-05-11 11:54:37,330 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
+2026-05-11 11:56:09,427 - root - INFO - Starting test session
+2026-05-11 11:56:09,429 - root - INFO - Starting test: test_validate_api_to_ui_synchronization
+2026-05-11 11:56:09,434 - fixtures.browser_fixture - INFO - Execution Mode: local
+2026-05-11 11:56:09,435 - WDM - INFO - ====== WebDriver manager ======
+2026-05-11 11:56:10,961 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:56:11,398 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2026-05-11 11:56:11,836 - WDM - INFO - Driver [C:\Users\sathw\.wdm\drivers\chromedriver\win64\148.0.7778.97\chromedriver-win32/THIRD_PARTY_NOTICES.chromedriver] found in cache
+2026-05-11 11:56:39,985 - pages.base_page - INFO - Navigated to: https://practice.expandtesting.com/notes/app
+2026-05-11 11:56:40,016 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:56:42,389 - pages.base_page - WARNING - Regular click failed: , trying JavaScript click
+2026-05-11 11:56:44,378 - pages.base_page - INFO - Successfully clicked base login button with JavaScript click
+2026-05-11 11:56:46,702 - pages.base_page - INFO - Typed text into element: ('id', 'email')
+2026-05-11 11:56:46,981 - pages.base_page - INFO - Typed text into element: ('id', 'password')
+2026-05-11 11:56:47,199 - pages.base_page - INFO - Successfully clicked login button with regular click
+2026-05-11 11:56:47,208 - pages.base_page - INFO - Page loaded successfully
+2026-05-11 11:56:47,208 - pages.base_page - INFO - Login page loaded successfully
+2026-05-11 11:56:47,673 - pages.base_page - INFO - Home page is loaded successfully
+2026-05-11 11:56:58,118 - root - INFO - Completed test: test_validate_api_to_ui_synchronization
+2026-05-11 11:56:58,126 - root - INFO - Test session completed
+2026-05-11 11:56:58,182 - allure_utils - INFO - Log file attached to Allure: logs/pytest.log
